@@ -1,26 +1,39 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig, loadEnv } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  base: '/analytical_eng_portfolio/', // Must match your GitHub repo name
-  build: {
-    outDir: 'dist',
-    assetsDir: 'assets',
-    sourcemap: false,
-    minify: 'terser',
-    rollupOptions: {
-      output: {
-        manualChunks: undefined,
+// https://vite.dev/config/
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), "");
+  
+  return {
+    base: `/${env.VITE_REPO_NAME}/`,
+    plugins: [react(), tailwindcss()],
+    build: {
+      outDir: 'dist',
+      assetsDir: 'assets',
+      sourcemap: false,
+      minify: 'esbuild', // Use esbuild (built-in, faster than terser)
+      rollupOptions: {
+        output: {
+          manualChunks: undefined,
+        },
       },
     },
-  },
-  server: {
-    port: 3000,
-    open: true,
-  },
-  preview: {
-    port: 4173,
-  },
-})
+    server: {
+      port: 3000,
+      open: true,
+      host: false, // Allow access from network devices
+      proxy: {
+        "/api": {
+          target: "http://localhost:5000",
+          changeOrigin: true,
+          secure: true,
+        },
+      },
+    },
+    preview: {
+      port: 4173,
+    },
+  };
+});
