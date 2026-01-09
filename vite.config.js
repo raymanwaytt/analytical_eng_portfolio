@@ -4,8 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/', // Use '/' for custom domain or root deployment
-  build: {
+  base: 'https://github.com/raymanwaytt/analytical_eng_portfolio',
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
