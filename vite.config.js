@@ -7,7 +7,8 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   
   return {
-    base: `/${env.VITE_REPO_NAME}/`,
+    // For GitHub Pages - must match your repo name exactly
+    base: '/analytical_eng_portfolio/',
     plugins: [react(), tailwindcss()],
     build: {
       outDir: 'dist',

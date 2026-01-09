@@ -33,7 +33,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_REPO_NAME: picto
+          VITE_REPO_NAME: analytical_eng_portfolio
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
