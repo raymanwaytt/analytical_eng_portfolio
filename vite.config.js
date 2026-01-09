@@ -1,23 +1,26 @@
-import { defineConfig, loadEnv } from "vite";
-import react from "@vitejs/plugin-react";
-import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), "");
-  return {
-    base: `/${env.VITE_REPO_NAME}/`,
-    plugins: [react(), tailwindcss()],
-    server: {
-      open: true,
-      host: false, // Allow access from network devices
-      proxy: {
-        "/api": {
-          target: "http://localhost:5000",
-          changeOrigin: true,
-          secure: true,
-        },
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  base: '/', // Use '/' for custom domain or root deployment
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: false,
+    minify: 'terser',
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
       },
     },
-  };
-});
+  },
+  server: {
+    port: 3000,
+    open: true,
+  },
+  preview: {
+    port: 4173,
+  },
+})
