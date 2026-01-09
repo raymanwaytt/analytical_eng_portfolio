@@ -16,7 +16,7 @@ const addressData = [
   {
     icon: faEnvelope,
     title: "My Email",
-    description: "arunaabdulrahman01@mail.com",
+    description: "arunaabdulrahman01@gmail.com",
   },
   {
     icon: faPhone,

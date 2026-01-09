@@ -5,6 +5,7 @@ import card3 from "../../assets/images/portfolio-images/card-3.png";
 import card4 from "../../assets/images/portfolio-images/card-4.png";
 import card5 from "../../assets/images/portfolio-images/card-5.png";
 import card6 from "../../assets/images/portfolio-images/card-6.png";
+import ToolStack from "./ToolStack";
 
 
 const projectData = [
@@ -15,7 +16,8 @@ const projectData = [
     title: "Modern Data Warehouse (Medallion Architecture)",
     description:
       "Designed and implemented a SQL Server data warehouse using Bronze, Silver, and Gold layers. Built ingestion pipelines from ERP and CRM CSV sources and modeled analytics-ready fact and dimension tables.",
-    link: "#!",
+    link: "https://github.com/raymanwaytt/datawarehouse_project_sql",
+     tools: ["SQL Server", "ETL", "Data Modeling"]
   },
   {
     id: 2,
@@ -24,7 +26,8 @@ const projectData = [
     title: "Automated Bitcoin Analytics Pipeline",
     description:
       "Built an automated ELT pipeline using API ingestion, BigQuery, dbt transformations, and scheduled orchestration to deliver daily Bitcoin market analytics in a reporting-ready format.",
-    link: "#!",
+    link: "https://github.com/raymanwaytt/bitcoin_daily_price",
+    tools: ["Python", "BigQuery", "dbt", "Airflow", 'Looker']
   },
   {
     id: 3,
@@ -33,7 +36,8 @@ const projectData = [
     title: "Customer Segmentation Analysis",
     description:
       "Performed customer segmentation using transactional data to identify behavioral patterns and high-value segments, supporting targeted marketing and business decision-making.",
-    link: "#!",
+    link: "https://github.com/raymanwaytt/oibsip_taskno/tree/master/PROJECT%202/Customer%20Segmentation%20Analysis",
+     tools: ["Python", "SQL", "Power BI"]
   },
   {
     id: 4,
@@ -41,17 +45,19 @@ const projectData = [
     category: "DATA ANALYTICS",
     title: "Crime Data Analysis & Visualization",
     description:
-      "Analyzed large-scale crime datasets using Python and visualization libraries to uncover trends, geographic patterns, and temporal insights for exploratory analysis.",
-    link: "#!",
+      "A collection of real-world crime data projects focused on uncovering patterns, trends, and insights through exploratory data analysis and visual storytelling. These projects analyze crime distribution across time, location, and categories, with an emphasis on insight-driven reporting rather than raw metrics.",
+    link: "https://github.com/raymanwaytt/Crime-Data-Analysis-Portfolio/tree/main",
+    tools: ["Python", "SQL", "Power BI"]
   },
   {
     id: 5,
     image: card5,
     category: "BUSINESS INTELLIGENCE",
-    title: "Security Levy Compliance Dashboard",
+    title: "FRAUD DETECTION for PaySwift",
     description:
-      "Developed an Excel and Power BI dashboard to track street-level security levy compliance, collections, and performance metrics for operational transparency.",
-    link: "#!",
+      "End-to-end fraud detection pipeline built using Python, SQL (PostgreSQL), and Tableau. Includes synthetic data generation, SMOTE-balanced modeling, threshold tuning, and an executive dashboard for ops decision-making. ROC-AUC: 0.88.",
+    link: "https://github.com/raymanwaytt/PaySwift_Fraud_Detection",
+    tools: ["Python", "SQL", "Tableau"]
   },
   {
     id: 6,
@@ -60,7 +66,8 @@ const projectData = [
     title: "Credit Risk Analytics Pipeline",
     description:
       "Built a layered analytics pipeline for credit risk data, focusing on data quality checks, transformations, and analytics-ready outputs for downstream risk analysis.",
-    link: "#!",
+    link: "https://github.com/raymanwaytt/credit-risk-analytics",
+     tools: ['Python', "PostgreSQL", 'dbt',"Power BI"]
   },
 ];
 
@@ -74,8 +81,9 @@ const Portfolio = () => {
         <div className="max-sm:px-2 text-center mx-auto max-w-144.25">
           <p className="section-title ">Projects</p>
           <p className="font-normal text-[18px] max-sm:text-[14px] pt-6 text-gray-400">
-            Here's a selection of my recent work, showcasing my skills in
-            creating user-centric and visually appealing interfaces.
+            Here’s a selection of my recent projects, showcasing my work across 
+            data analysis, analytical engineering, and visualization — from data extraction 
+            and transformation to insight-driven reporting using real-world datasets.
           </p>
         </div>
       </div>
@@ -88,7 +96,7 @@ const Portfolio = () => {
       </div>
       <div className="text-center">
         <a
-          href="#!"
+          href="https://github.com/raymanwaytt?tab=repositories"
           className="btn btn-primary py-3 px-6 mt-12.5 text-center text-[16px] font-semibold"
         >
           More Project
