@@ -2,19 +2,22 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ToolStack from "./ToolStack";
 
-
 const Projects = ({ data }) => {
   return (
-    <div className="max-w-106 rounded-lg outline-[#FFFFFF] hover:shadow-2xl duration-300 transition-all shadow-gray-300 border border-gray-200">
-      <img src={data?.image} alt={`${data?.title} image`} />
+    <article className="max-w-106 overflow-hidden rounded-lg border border-gray-200 outline-[#FFFFFF] shadow-gray-300 transition-all duration-300 hover:shadow-2xl">
+      <img
+        src={data?.image}
+        alt={`${data?.title} image`}
+        className="h-48 w-full object-cover"
+      />
       <div className="p-4 xs:p-8">
-        <p className="text-gray-400 text-xs font-medium">{data?.category}</p>
-        <p className="text-gray-900 text-md xxs:text-lg font-semibold pt-1 mb-3">
+        <p className="text-xs font-medium text-gray-400">{data?.category}</p>
+        <h3 className="mb-3 pt-1 text-md font-semibold text-gray-900 xxs:text-lg">
           {data?.title}
-        </p>
+        </h3>
         <p
           style={{ lineHeight: "20px", letterSpacing: "0%" }}
-          className="text-gray-600 text-xs xxs:text-[14px] text-wrap"
+          className="text-wrap text-xs text-gray-600 xxs:text-[14px]"
         >
           {data?.description}
         </p>
@@ -23,17 +26,17 @@ const Projects = ({ data }) => {
 
         <a
           href={data?.link}
-          className="btn hover:border-picto-primary hover:text-picto-primary bg-white text-sm xs:text-[16px] font-semibold hover:gap-3 xs:hover:gap-4 transition-all duration-300 mt-5 xs:py-5.75 px-6 max-sm:w-full"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn mt-5 bg-white px-6 text-sm font-semibold transition-all duration-300 hover:border-picto-primary hover:text-picto-primary xs:py-5.75 xs:text-[16px] max-sm:w-full"
         >
-          Full Project
+          View project
           <span className="ms-1 xs:ms-3">
-            
-            <FontAwesomeIcon icon={faArrowRight} size="l" className="" />
+            <FontAwesomeIcon icon={faArrowRight} size="l" />
           </span>
         </a>
-        {/* </p> */}
       </div>
-    </div>
+    </article>
   );
 };
 

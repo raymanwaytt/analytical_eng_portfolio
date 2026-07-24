@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import logo from "../../../assets/logo.png";
 import { Link } from "react-scroll";
+import { cvLink } from "../../../data/projects";
 
 const navItems = [
   { id: 1, name: "Home", url: "introduction" },
-  { id: 2, name: "About", url: "profile" },
-  // { id: 3, name: "Process", url: "work-process" },
-  { id: 4, name: "Projects", url: "portfolio" },
-  // { id: 5, name: "Blog", url: "blog" },
-  // { id: 6, name: "Services", url: "services" },
+  { id: 2, name: "Projects", url: "featured" },
+  { id: 3, name: "Approach", url: "approach" },
+  { id: 4, name: "Stack", url: "stack" },
 ];
 
 const handleMenuClick = () => {
@@ -27,10 +26,10 @@ const menu = navItems.map((item) => (
       spy={true}
       offset={-140}
       activeStyle={{
-        backgroundColor: "#9929fb",
+        backgroundColor: "#0f766e",
         color: "white",
       }}
-      className={`hover:text-picto-primary px-5 py-3 mx-1`}
+      className="mx-1 px-5 py-3 hover:text-picto-primary"
     >
       {item.name}
     </Link>
@@ -52,13 +51,13 @@ const NavBar = () => {
 
   return (
     <div
-      className={`sticky top-0 ${
+      className={`sticky top-0 z-50 transition-all duration-1000 ${
         position > 50
-          ? "bg-soft-white border-b border-gray-300"
-          : "bg-white border-white"
-      } z-50 transition-all duration-1000`}
+          ? "border-b border-gray-300 bg-soft-white"
+          : "border-white bg-white"
+      }`}
     >
-      <div className="navbar flex justify-between mx-auto content">
+      <div className="navbar content mx-auto flex justify-between">
         <div className="flex items-center justify-between">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -79,41 +78,52 @@ const NavBar = () => {
             </div>
             <ul
               tabIndex={0}
-              className={`menu menu-lg dropdown-content rounded-box z-1 mt-3 w-lvw p-2 shadow font-semibold flex-nowrap bg-white text-black`}
+              className="menu menu-lg dropdown-content z-1 mt-3 w-lvw flex-nowrap rounded-box bg-white p-2 font-semibold text-black shadow"
             >
               {menu}
+              <li>
+                <a href={cvLink} target="_blank" rel="noopener noreferrer">
+                  CV
+                </a>
+              </li>
             </ul>
           </div>
 
           <Link
-            href="#introduction"
-            to={`introduction`}
+            to="introduction"
             smooth={true}
             duration={900}
             className="flex items-center border-0 lg:max-xxl:ps-5"
           >
-            <img src={logo} className="h-8 sm:h-14 rounded-2xl" alt="logo" />
-            <p className="text-2xl sm:text-[32px] my-auto ms-[12px] font-semibold">
+            <img src={logo} className="h-8 rounded-2xl sm:h-14" alt="logo" />
+            <p className="my-auto ms-[12px] text-xl font-semibold sm:text-[28px]">
               Abdulrahman Aruna
             </p>
           </Link>
         </div>
 
-        <div className="lg:flex items-center">
-          <ul className="hidden lg:flex menu menu-horizontal text-[16px] font-medium md:shrink-0">
+        <div className="items-center lg:flex">
+          <ul className="menu menu-horizontal hidden text-[16px] font-medium md:shrink-0 lg:flex">
             {menu}
           </ul>
-          <p className="">
+          <div className="hidden items-center gap-2 sm:flex">
+            <a
+              href={cvLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-ghost btn-sm xs:btn-md"
+            >
+              CV
+            </a>
             <Link
-              className="btn btn-sm xs:btn-md sm:btn-lg btn-primary"
-              href="#contact"
-              to={`contact`}
+              className="btn btn-sm btn-primary xs:btn-md sm:btn-lg text-white"
+              to="contact"
               smooth={true}
               duration={900}
             >
               Contact
             </Link>
-          </p>
+          </div>
         </div>
       </div>
     </div>

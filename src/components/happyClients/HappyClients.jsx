@@ -1,31 +1,26 @@
-import React from 'react';
 import Marquee from "react-fast-marquee";
 
 const techStack = [
-  { id: 0, name: "Excel", icon: "icons/excel.svg" },
   { id: 1, name: "PostgreSQL", icon: "icons/postgresql.svg" },
   { id: 2, name: "Python", icon: "icons/python.svg" },
-  { id: 3, name: "Power BI", icon: "icons/powerbi.svg" },
-  { id: 4, name: "Tableau", icon: "icons/tableau.svg" },
-  { id: 5, name: "Looker", icon: "icons/looker.svg" },
-  { id: 6, name: "BigQuery", icon: "icons/bigquery.svg" },
-  { id: 7, name: "AWS", icon: "icons/aws.svg" },
-  { id: 8, name: "dbt", icon: "icons/dbt.svg" },
-  { id: 9, name: "Apache Airflow", icon: "icons/airflow.svg" }, // Fixed duplicate ID
-  { id: 10, name: "Databricks", icon: "icons/databricks.svg" },
-  { id: 11, name: "PySpark", icon: "icons/pyspark.svg" },
+  { id: 3, name: "BigQuery", icon: "icons/bigquery.svg" },
+  { id: 4, name: "dbt", icon: "icons/dbt.svg" },
+  { id: 5, name: "Apache Airflow", icon: "icons/airflow.svg" },
+  { id: 6, name: "Power BI", icon: "icons/powerbi.svg" },
+  { id: 7, name: "Tableau", icon: "icons/tableau.svg" },
+  { id: 8, name: "Looker", icon: "icons/looker.svg" },
+  { id: 9, name: "AWS", icon: "icons/aws.svg" },
+  { id: 10, name: "Excel", icon: "icons/excel.svg" },
 ];
 
 const TechStack = () => {
   return (
-    <section className="py-20 bg-soft-white">
+    <section className="bg-soft-white py-20" id="stack">
       <div className="container mx-auto text-center">
-        <h2 className="text-2xl sm:text-3xl font-semibold mb-4">
-          Tech Stack
-        </h2>
-        <p className="text-gray-600 mb-12 max-w-xl mx-auto">
-          Tools and platforms I use to design, build, and maintain modern
-          analytics and data engineering systems.
+        <h2 className="text-2xl font-semibold sm:text-3xl">Tech stack</h2>
+        <p className="mx-auto mb-12 mt-4 max-w-xl text-gray-600">
+          Tools I use to design, build, and maintain modern analytics and data
+          engineering systems.
         </p>
 
         <Marquee pauseOnHover={true} speed={50} gradient={false}>
@@ -33,14 +28,16 @@ const TechStack = () => {
             {techStack.map((tool) => (
               <div
                 key={tool.id}
-                className="flex flex-col items-center justify-center opacity-80 hover:opacity-100 transition min-w-[120px]"
+                className="flex min-w-[120px] flex-col items-center justify-center opacity-80 transition hover:opacity-100"
               >
                 <img
                   src={tool.icon}
                   alt={tool.name}
-                  className="h-10 w-auto mb-3"
+                  className="mb-3 h-10 w-auto"
                 />
-                <span className="text-sm text-gray-700 whitespace-nowrap">{tool.name}</span>
+                <span className="whitespace-nowrap text-sm text-gray-700">
+                  {tool.name}
+                </span>
               </div>
             ))}
           </div>

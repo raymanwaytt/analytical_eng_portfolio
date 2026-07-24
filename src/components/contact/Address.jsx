@@ -3,18 +3,20 @@ import { useState } from "react";
 
 const Address = ({ item }) => {
   const [hover, setHover] = useState(false);
+  const isEmail = item?.title === "Email";
+  const isPhone = item?.title === "Phone";
+  const href = isEmail
+    ? `mailto:${item.description}`
+    : isPhone
+      ? `tel:${item.description}`
+      : undefined;
 
-  return (
-    <div
-      className="max-w-84 p-3 md:p-3.75 lg:p-6 flex xs:not-odd:my-3 rounded-[10px] bg-white  hover:scale-[1] duration-450  cursor-pointer hover:shadow-[0px_0px_37px_5px_rgba(0,_0,_0,_0.1)] shadow-gray-200 max-sm:mx-auto"
-      /* Scale effect:  */
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-    >
+  const content = (
+    <>
       <div
-        className={`h-10 md:h-12 aspect-square ${
-          hover ? "bg-picto-primary" : "bg-[#EDD8FF80]"
-        } center rounded-[4px]`}
+        className={`center aspect-square h-10 rounded-[4px] md:h-12 ${
+          hover ? "bg-picto-primary" : "bg-teal-100"
+        }`}
       >
         <FontAwesomeIcon
           icon={item?.icon}
@@ -24,13 +26,39 @@ const Address = ({ item }) => {
         />
       </div>
       <div className="ms-3.25">
-        <p className="text-[12px] md:text-[14px] text-[#424E60] font-normal">
+        <p className="text-[12px] font-normal text-[#424E60] md:text-[14px]">
           {item?.title}:
         </p>
-        <p className="text-[14px] md:text-[16px] text-[#132238] font-medium">
+        <p className="text-[14px] font-medium text-ink md:text-[16px]">
           {item?.description}
         </p>
       </div>
+    </>
+  );
+
+  const sharedClassName =
+    "flex max-w-84 cursor-pointer rounded-[10px] bg-white p-3 shadow-gray-200 duration-450 hover:shadow-[0px_0px_37px_5px_rgba(0,_0,_0,_0.1)] md:p-3.75 lg:p-6 max-sm:mx-auto";
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        className={sharedClassName}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <div
+      className={sharedClassName}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      {content}
     </div>
   );
 };
