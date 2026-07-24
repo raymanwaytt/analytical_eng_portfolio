@@ -21,10 +21,10 @@ const Introduction = () => {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
-              to="portfolio"
+              to="featured"
               smooth={true}
               duration={800}
-              offset={-120}
+              offset={-100}
               className="btn btn-primary btn-lg text-white"
             >
               View Projects
