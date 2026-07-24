@@ -19,43 +19,49 @@
   --breakpoint-xxs: 21.25rem; /* COMMENT: 340px */
   --breakpoint-xs: 23.125rem; /* COMMENT: 363px */
   --breakpoint-xxl: 82.5rem; /* COMMENT: 1320px */
-  --color-picto-primary: #9929fb;
-  --color-picto-primary-dark: #650fa0;
-  --color-soft-white: #f0f1f3;
-  --color-soft-dark: #87909d;
+  --color-picto-primary: #0f766e;
+  --color-picto-primary-dark: #115e59;
+  --color-soft-white: #f3f6f5;
+  --color-soft-dark: #667085;
+  --color-ink: #14213d;
+  --font-display: "Fraunces", Georgia, serif;
 }
 
 .btn-primary {
-  @apply bg-picto-primary border-0 text-white hover:scale-[102%] hover:bg-picto-primary-dark transition-all duration-500;
+  @apply border-0 bg-picto-primary text-white transition-all duration-500 hover:scale-[102%] hover:bg-picto-primary-dark;
 }
+
 body {
-  font-family: "Work Sans", sans-serif;
+  font-family: "Manrope", "Work Sans", sans-serif;
+  color: #14213d;
+  background-color: #f3f6f5;
+}
+
+.font-display {
+  font-family: var(--font-display);
 }
 
 .content {
-  @apply max-xxl:w-full xxl:max-w-[1320px] xxl:mx-auto;
+  @apply max-xxl:w-full xxl:mx-auto xxl:max-w-[1320px];
 }
 
 .section-title {
-  @apply md:font-semibold text-3xl sm:text-4xl md:text-5xl font-medium;
+  @apply text-3xl font-medium sm:text-4xl md:text-5xl md:font-semibold;
 }
 
 .center {
-  @apply flex justify-center items-center;
+  @apply flex items-center justify-center;
 }
 
 .introduction-profile-background {
-  background: radial-gradient(
-      circle at 12% 100%,
-      #ffe2b0f5 1% 5px,
-      transparent 15%
-    ),
-    /* bottom left */
-      radial-gradient(circle at 95% -15%, #da4df166 5%, transparent 30%),
-    /* top right */
-      radial-gradient(circle at center right, #c4f5e9b2 2%, transparent 35%); /* center right */
+  background:
+    radial-gradient(circle at 12% 100%, #99f6e4aa 1% 5px, transparent 18%),
+    radial-gradient(circle at 95% -15%, #2dd4bf55 5%, transparent 30%),
+    radial-gradient(circle at center right, #f0fdfa 2%, transparent 35%);
 }
+
 .blog-background {
-  background: radial-gradient(circle at -10% 0%, #da4df166 1%, transparent 25%),
-    radial-gradient(circle at 110% 30%, #c4f5e9b2 5%, transparent 25%);
+  background:
+    radial-gradient(circle at -10% 0%, #2dd4bf55 1%, transparent 25%),
+    radial-gradient(circle at 110% 30%, #99f6e4aa 5%, transparent 25%);
 }
