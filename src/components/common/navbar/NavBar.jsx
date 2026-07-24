@@ -5,7 +5,7 @@ import { cvLink } from "../../../data/projects";
 
 const navItems = [
   { id: 1, name: "Home", url: "introduction" },
-  { id: 2, name: "Projects", url: "portfolio" },
+  { id: 2, name: "Projects", url: "featured" },
   { id: 3, name: "Approach", url: "approach" },
   { id: 4, name: "Stack", url: "stack" },
 ];
