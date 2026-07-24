@@ -3,7 +3,7 @@ import btc from "../assets/images/portfolio-images/bitcoin.jpg";
 import seg from "../assets/images/portfolio-images/Customer Segmentati.jpg";
 import crime from "../assets/images/portfolio-images/crime.jpg";
 import fraud from "../assets/images/portfolio-images/fraud.jpeg";
-import credit from "../assets/images/portfolio-images/credit.png";
+import credit from "../assets/images/portfolio-images/credit.jpg";
 
 export const profile = {
   name: "Abdulrahman Aruna",
