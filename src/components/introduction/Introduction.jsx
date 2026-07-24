@@ -7,19 +7,23 @@ const Introduction = () => {
   return (
     <section className="hero-shell" id="introduction">
       <div className="hero-media" aria-hidden="true">
-        <img src={person} alt="" className="hero-media__image" />
+        <img
+          src={person}
+          alt=""
+          className="hero-media__image"
+        />
         <div className="hero-media__veil" />
       </div>
 
-      <div className="content relative z-10 flex min-h-[78vh] items-end px-4 pb-16 pt-28 sm:pb-20 lg:items-center lg:pb-28 lg:pt-36">
-        <div className="hero-copy max-w-2xl animate-hero-rise">
+      <div className="content hero-content">
+        <div className="hero-copy animate-hero-rise">
           <p className="hero-brand">Abdulrahman Aruna</p>
           <h1 className="hero-role">Data &amp; Analytics Engineer</h1>
           <p className="hero-support">
             I build reliable pipelines and analytics-ready warehouses that turn
             operational data into decisions.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="hero-actions">
             <Link
               to="featured"
               smooth={true}
