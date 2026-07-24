@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 // literal picture of the work. Cursor acts as a probe that parts the stream.
 // Chosen over WebGL for a lighter bundle, broad reliability, and easy
 // reduced-motion + visibility pausing.
-const NOISE = [139, 151, 168];
+const NOISE = [150, 163, 182];
 const SIGNAL = [200, 255, 45];
 const LANES = 7;
 
@@ -48,19 +48,22 @@ const RefineryCanvas = () => {
 
     const spawn = (fromLeft) => {
       const lane = S.lanes[(Math.random() * LANES) | 0] || S.h / 2;
-      const x = fromLeft ? -Math.random() * S.w * 0.1 : Math.random() * S.w;
+      const x = fromLeft ? -Math.random() * S.w * 0.15 : Math.random() * S.w;
+      const scatter = (Math.random() - 0.5) * S.h * 0.6;
+      const t = Math.max(0, x / S.w);
+      const y = lane + scatter * (1 - t);
       return {
         x,
-        y: lane + (Math.random() - 0.5) * S.h * 0.7,
+        y,
         px: x,
-        py: lane,
+        py: y,
         laneY: lane,
-        scatter: (Math.random() - 0.5) * S.h * 0.62,
-        speed: 0.4 + Math.random() * 1.1,
-        amp: 6 + Math.random() * 26,
+        scatter,
+        speed: 1.6 + Math.random() * 3.2,
+        amp: 3 + Math.random() * 9,
         phase: Math.random() * Math.PI * 2,
-        phaseSpeed: 0.0006 + Math.random() * 0.0018,
-        size: 0.6 + Math.random() * 1.4,
+        phaseSpeed: 0.001 + Math.random() * 0.002,
+        size: 0.6 + Math.random() * 1.5,
       };
     };
 
@@ -154,7 +157,7 @@ const RefineryCanvas = () => {
 
         const easeT = Math.pow(t, 1.3);
         const [r, g, b] = mix(NOISE, SIGNAL, easeT);
-        const alpha = 0.14 + easeT * 0.72;
+        const alpha = 0.22 + easeT * 0.68;
         ctx.strokeStyle = `rgba(${r},${g},${b},${alpha})`;
         ctx.lineWidth = p.size * (0.55 + easeT * 1.1);
         ctx.beginPath();
