@@ -38,6 +38,20 @@ const Footer = () => {
               Data &amp; analytics engineer building reliable pipelines and
               analytics-ready warehouses.
             </p>
+
+            <p className="mt-7 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-brand-300">
+              <span
+                className="h-1.5 w-1.5 rounded-full bg-brand-300"
+                aria-hidden="true"
+              />
+              Open to new roles
+            </p>
+            <a
+              href="mailto:arunaabdulrahman01@gmail.com"
+              className="mt-3 inline-block text-[15px] font-semibold text-white underline decoration-white/25 decoration-1 underline-offset-4 transition-colors duration-200 hover:decoration-brand-300"
+            >
+              arunaabdulrahman01@gmail.com
+            </a>
           </div>
 
           <div className="flex gap-12 sm:gap-20">

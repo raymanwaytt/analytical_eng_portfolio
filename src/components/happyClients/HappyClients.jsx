@@ -1,5 +1,6 @@
 import Marquee from "react-fast-marquee";
 import SectionHeading from "../common/sectionHeading/SectionHeading";
+import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
 import "./techStack.css";
 
 const base = import.meta.env.BASE_URL;
@@ -35,6 +36,8 @@ const Tile = ({ tool }) => (
 );
 
 const TechStack = () => {
+  const prefersReducedMotion = usePrefersReducedMotion();
+
   return (
     <section className="section bg-white" id="stack">
       <div className="shell">
@@ -50,6 +53,7 @@ const TechStack = () => {
           <div className="marquee-mask" key={row.direction}>
             <Marquee
               pauseOnHover={true}
+              play={!prefersReducedMotion}
               speed={row.speed}
               direction={row.direction}
               gradient={false}
