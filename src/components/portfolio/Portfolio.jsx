@@ -1,39 +1,47 @@
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Projects from "./Projects";
 import { projectData } from "../../data/projects";
+import Reveal from "../common/reveal/Reveal";
+import SectionHeading from "../common/sectionHeading/SectionHeading";
 
 const Portfolio = () => {
   return (
-    <div
-      className="content mt-10 mb-10 max-xxl:p-2 md:mt-15 md:mb-25 xl:mt-25"
-      id="portfolio"
-    >
-      <div className="mb-5 xl:mb-17.5">
-        <div className="mx-auto max-w-144.25 text-center max-sm:px-2">
-          <p className="section-title">Selected projects</p>
-          <p className="pt-6 text-[18px] font-normal text-gray-400 max-sm:text-[14px]">
-            A focused set of work across warehousing, analytics engineering, and
-            insight delivery — from extraction and modeling to reporting.
-          </p>
+    <section className="section bg-white" id="portfolio">
+      <div className="shell">
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          <SectionHeading
+            eyebrow="Selected work"
+            title="Projects that moved data to decisions"
+            lede="A focused set of work across warehousing, analytics engineering, and insight delivery — from extraction and modeling to reporting."
+            className="md:max-w-2xl"
+          />
+          <Reveal delay={120} className="md:pb-2">
+            <a
+              href="https://github.com/raymanwaytt?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cta cta--outline"
+            >
+              More on GitHub
+              <FontAwesomeIcon
+                icon={faArrowUpRightFromSquare}
+                className="cta__icon text-xs"
+                aria-hidden="true"
+              />
+            </a>
+          </Reveal>
         </div>
-      </div>
-      <div className="mx-auto flex justify-center">
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {projectData.map((data) => (
-            <Projects data={data} key={data.id} />
+
+        <div className="mt-12 grid items-stretch gap-6 md:mt-16 md:grid-cols-2 xl:grid-cols-3">
+          {projectData.map((data, index) => (
+            <Reveal key={data.id} delay={index * 110} className="h-full">
+              <Projects data={data} />
+            </Reveal>
           ))}
         </div>
       </div>
-      <div className="text-center">
-        <a
-          href="https://github.com/raymanwaytt?tab=repositories"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn btn-primary mt-12.5 px-6 py-3 text-center text-[16px] font-semibold text-white"
-        >
-          More on GitHub
-        </a>
-      </div>
-    </div>
+    </section>
   );
 };
 

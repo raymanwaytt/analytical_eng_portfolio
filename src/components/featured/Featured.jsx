@@ -1,70 +1,90 @@
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { featuredProject } from "../../data/projects";
-import ToolStack from "../portfolio/ToolStack";
+import Reveal from "../common/reveal/Reveal";
+import SectionHeading from "../common/sectionHeading/SectionHeading";
 
 const Featured = () => {
   const project = featuredProject;
 
+  const rows = [
+    { label: "Problem", value: project.problem },
+    { label: "What I built", value: project.built },
+    { label: "Outcome", value: project.outcome },
+  ];
+
   return (
-    <section className="bg-soft-white py-20 md:py-28" id="featured">
-      <div className="content max-xxl:px-4">
-        <p className="text-sm font-medium uppercase tracking-[0.18em] text-picto-primary">
-          Featured project
-        </p>
-        <h2 className="section-title mt-3 max-w-3xl">{project.title}</h2>
-        <p className="mt-4 max-w-2xl text-base text-soft-dark sm:text-lg">
-          A flagship end-to-end pipeline that shows how I move data from source
-          to decision-ready analytics.
-        </p>
+    <section className="section bg-paper" id="featured">
+      <div className="shell">
+        <SectionHeading
+          eyebrow="Featured project"
+          title={project.title}
+          lede="A flagship end-to-end pipeline that shows how I move data from source to decision-ready analytics."
+        />
 
-        <div className="mt-10 grid items-center gap-10 lg:grid-cols-2">
-          <div className="overflow-hidden rounded-2xl bg-ink shadow-xl shadow-ink/10">
-            <img
-              src={project.image}
-              alt={`${project.title} preview`}
-              className="h-full min-h-72 w-full object-cover opacity-95"
-            />
-          </div>
+        <Reveal delay={120} className="mt-12 md:mt-16">
+          <article className="panel group overflow-hidden lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+            <div className="relative overflow-hidden bg-ink-900">
+              <img
+                src={project.image}
+                alt={`${project.title} preview`}
+                loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05] max-lg:aspect-[16/10]"
+              />
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent"
+                aria-hidden="true"
+              />
+              <p className="absolute bottom-4 left-4 inline-flex items-center rounded-md border border-white/15 bg-ink-950/65 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-brand-200 backdrop-blur-sm">
+                {project.category}
+              </p>
+            </div>
 
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-picto-primary">
-              {project.category}
-            </p>
-            <dl className="mt-6 space-y-5">
-              <div>
-                <dt className="text-sm font-semibold text-ink">Problem</dt>
-                <dd className="mt-1 text-[15px] leading-relaxed text-gray-600">
-                  {project.problem}
-                </dd>
-              </div>
-              <div>
-                <dt className="text-sm font-semibold text-ink">What I built</dt>
-                <dd className="mt-1 text-[15px] leading-relaxed text-gray-600">
-                  {project.built}
-                </dd>
-              </div>
-              <div>
-                <dt className="text-sm font-semibold text-ink">Outcome</dt>
-                <dd className="mt-1 text-[15px] leading-relaxed text-gray-600">
-                  {project.outcome}
-                </dd>
-              </div>
-            </dl>
+            <div className="p-6 sm:p-9 lg:p-11">
+              <dl className="divide-y divide-slate-200/70 border-y border-slate-200/70">
+                {rows.map((row) => (
+                  <div
+                    key={row.label}
+                    className="grid gap-1.5 py-4 sm:grid-cols-[7.5rem_1fr] sm:gap-6"
+                  >
+                    <dt className="pt-0.5 font-mono text-[10px] uppercase tracking-[0.18em] text-faint">
+                      {row.label}
+                    </dt>
+                    <dd className="text-[15px] leading-relaxed text-slate-soft">
+                      {row.value}
+                    </dd>
+                  </div>
+                ))}
+                <div className="grid gap-2.5 py-4 sm:grid-cols-[7.5rem_1fr] sm:gap-6">
+                  <dt className="pt-1 font-mono text-[10px] uppercase tracking-[0.18em] text-faint">
+                    Stack
+                  </dt>
+                  <dd className="flex flex-wrap gap-2">
+                    {project.tools.map((tool) => (
+                      <span className="tool-chip" key={tool}>
+                        {tool}
+                      </span>
+                    ))}
+                  </dd>
+                </div>
+              </dl>
 
-            <ToolStack tools={project.tools} />
-
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary mt-8 text-white"
-            >
-              View on GitHub
-              <FontAwesomeIcon icon={faArrowRight} className="ms-2" />
-            </a>
-          </div>
-        </div>
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cta cta--primary mt-7"
+              >
+                View on GitHub
+                <FontAwesomeIcon
+                  icon={faArrowUpRightFromSquare}
+                  className="cta__icon text-xs"
+                  aria-hidden="true"
+                />
+              </a>
+            </div>
+          </article>
+        </Reveal>
       </div>
     </section>
   );
