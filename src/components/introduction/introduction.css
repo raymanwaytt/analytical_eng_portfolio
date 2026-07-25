@@ -61,7 +61,13 @@
       rgba(8, 18, 32, 0.16) 100%
     ),
     linear-gradient(180deg, rgba(7, 16, 29, 0.5) 0%, transparent 22%),
-    linear-gradient(0deg, rgba(7, 16, 29, 0.72) 0%, transparent 26%);
+    linear-gradient(0deg, rgba(7, 16, 29, 0.72) 0%, transparent 26%),
+    /* Vignette that settles the busy background around the face. */
+      radial-gradient(
+        75% 75% at 76% 46%,
+        transparent 34%,
+        rgba(7, 16, 29, 0.42) 100%
+      );
 }
 
 .masthead__glow {
