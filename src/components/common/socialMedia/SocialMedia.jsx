@@ -21,13 +21,10 @@ const SocialMedia = () => {
       aria-label={item.label}
       target="_blank"
       rel="noopener noreferrer"
-      className="rounded-md p-2 pt-3 text-picto-primary hover:bg-picto-primary hover:text-white xs:p-2.5 xs:pt-3.75 sm:p-3 sm:pt-4 md:p-3.75 md:pt-5"
       key={item.label}
+      className="center aspect-square h-[3.125rem] rounded-xl border border-slate-200/80 bg-white text-slate-soft transition-[color,border-color,background-color,transform] duration-300 hover:-translate-y-0.5 hover:border-brand-700 hover:bg-brand-700 hover:text-white"
     >
-      <FontAwesomeIcon
-        icon={item.icon}
-        className="aspect-square w-4.5 text-xl"
-      />
+      <FontAwesomeIcon icon={item.icon} className="text-lg" aria-hidden="true" />
     </a>
   ));
 };

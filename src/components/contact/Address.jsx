@@ -1,8 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
 
 const Address = ({ item }) => {
-  const [hover, setHover] = useState(false);
   const isEmail = item?.title === "Email";
   const isPhone = item?.title === "Phone";
   const href = isEmail
@@ -13,54 +11,32 @@ const Address = ({ item }) => {
 
   const content = (
     <>
-      <div
-        className={`center aspect-square h-10 rounded-[4px] md:h-12 ${
-          hover ? "bg-picto-primary" : "bg-teal-100"
-        }`}
-      >
-        <FontAwesomeIcon
-          icon={item?.icon}
-          className={`text-lg md:text-xl ${
-            hover ? "text-white" : "text-picto-primary"
-          }`}
-        />
-      </div>
-      <div className="ms-3.25">
-        <p className="text-[12px] font-normal text-[#424E60] md:text-[14px]">
-          {item?.title}:
-        </p>
-        <p className="text-[14px] font-medium text-ink md:text-[16px]">
+      <span className="center aspect-square h-11 flex-none rounded-xl border border-brand-100 bg-brand-50 text-brand-700 transition-colors duration-300 group-hover:border-brand-700 group-hover:bg-brand-700 group-hover:text-white">
+        <FontAwesomeIcon icon={item?.icon} className="text-[15px]" aria-hidden="true" />
+      </span>
+      <span className="min-w-0">
+        <span className="block font-mono text-[10px] uppercase tracking-[0.18em] text-faint">
+          {item?.title}
+        </span>
+        <span className="mt-1 block truncate text-[15px] font-semibold text-ink">
           {item?.description}
-        </p>
-      </div>
+        </span>
+      </span>
     </>
   );
 
-  const sharedClassName =
-    "flex max-w-84 cursor-pointer rounded-[10px] bg-white p-3 shadow-gray-200 duration-450 hover:shadow-[0px_0px_37px_5px_rgba(0,_0,_0,_0.1)] md:p-3.75 lg:p-6 max-sm:mx-auto";
+  const className =
+    "group flex items-center gap-4 rounded-xl border border-slate-200/80 bg-white p-3.5 transition-[border-color,box-shadow,transform] duration-300 hover:border-brand-200 hover:shadow-[var(--shadow-lift)] sm:p-4";
 
   if (href) {
     return (
-      <a
-        href={href}
-        className={sharedClassName}
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-      >
+      <a href={href} className={className}>
         {content}
       </a>
     );
   }
 
-  return (
-    <div
-      className={sharedClassName}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-    >
-      {content}
-    </div>
-  );
+  return <div className={className}>{content}</div>;
 };
 
 export default Address;

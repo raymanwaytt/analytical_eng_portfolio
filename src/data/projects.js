@@ -1,7 +1,7 @@
 import card1 from "../assets/images/portfolio-images/data_architecture.png";
 import card2 from "../assets/images/portfolio-images/bitcoin.jpg";
 import card3 from "../assets/images/portfolio-images/fraud.jpeg";
-import card4 from "../assets/images/portfolio-images/credit.png";
+import card4 from "../assets/images/portfolio-images/credit.jpg";
 
 export const featuredProject = {
   id: 2,

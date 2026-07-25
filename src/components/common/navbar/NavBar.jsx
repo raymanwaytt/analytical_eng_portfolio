@@ -1,132 +1,174 @@
 import { useEffect, useState } from "react";
-import logo from "../../../assets/logo.png";
 import { Link } from "react-scroll";
+import Monogram from "../brand/Monogram";
 import { cvLink } from "../../../data/projects";
+import "./navbar.css";
 
 const navItems = [
   { id: 1, name: "Home", url: "introduction" },
-  { id: 2, name: "Projects", url: "featured" },
-  { id: 3, name: "Approach", url: "approach" },
-  { id: 4, name: "Stack", url: "stack" },
+  { id: 2, name: "Featured", url: "featured" },
+  { id: 3, name: "Projects", url: "portfolio" },
+  { id: 4, name: "Approach", url: "approach" },
+  { id: 5, name: "Stack", url: "stack" },
 ];
 
-const handleMenuClick = () => {
-  if (document.activeElement instanceof HTMLElement) {
-    document.activeElement.blur();
-  }
-};
-
-const menu = navItems.map((item) => (
-  <li key={item.id} onMouseDown={(e) => e.preventDefault()}>
-    <Link
-      onClick={handleMenuClick}
-      to={item.url.toLowerCase()}
-      smooth={true}
-      duration={1000}
-      spy={true}
-      offset={-140}
-      activeStyle={{
-        backgroundColor: "#0f766e",
-        color: "white",
-      }}
-      className="mx-1 px-5 py-3 hover:text-picto-primary"
-    >
-      {item.name}
-    </Link>
-  </li>
-));
+const SCROLL_OFFSET = -96;
 
 const NavBar = () => {
-  const [position, setPosition] = useState(0);
+  const [stuck, setStuck] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setPosition(window.scrollY);
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+      const scrolled = window.scrollY;
+      const track = document.documentElement.scrollHeight - window.innerHeight;
+      setStuck(scrolled > 24);
+      setProgress(track > 0 ? Math.min(scrolled / track, 1) : 0);
     };
-    window.addEventListener("scroll", handleScroll);
+
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
     };
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
   return (
-    <div
-      className={`sticky top-0 z-50 transition-all duration-1000 ${
-        position > 50
-          ? "border-b border-gray-300 bg-soft-white"
-          : "border-white bg-white"
-      }`}
-    >
-      <div className="navbar content mx-auto flex justify-between">
-        <div className="flex items-center justify-between">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-lg dropdown-content z-1 mt-3 w-lvw flex-nowrap rounded-box bg-white p-2 font-semibold text-black shadow"
+    <header className={`site-header ${stuck || menuOpen ? "is-stuck" : ""}`}>
+      <div className="shell site-header__inner">
+        <Link
+          to="introduction"
+          smooth={true}
+          duration={800}
+          className="brand"
+          onClick={() => setMenuOpen(false)}
+        >
+          <Monogram size={40} className="brand__mark" />
+          <span className="brand__text">
+            <span className="brand__name">Abdulrahman Aruna</span>
+            <span className="brand__role">Data &amp; Analytics Engineer</span>
+          </span>
+        </Link>
+
+        <nav className="nav-links" aria-label="Sections">
+          {navItems.map((item) => (
+            <Link
+              key={item.id}
+              to={item.url}
+              smooth={true}
+              duration={800}
+              spy={true}
+              offset={SCROLL_OFFSET}
+              activeClass="is-active"
+              className="nav-link"
             >
-              {menu}
-              <li>
-                <a href={cvLink} target="_blank" rel="noopener noreferrer">
-                  CV
-                </a>
-              </li>
-            </ul>
-          </div>
+              {item.name}
+            </Link>
+          ))}
+        </nav>
 
-          <Link
-            to="introduction"
-            smooth={true}
-            duration={900}
-            className="flex items-center border-0 lg:max-xxl:ps-5"
+        <div className="header-actions">
+          <a
+            href={cvLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="header-cv"
           >
-            <img src={logo} className="h-8 rounded-2xl sm:h-14" alt="logo" />
-            <p className="my-auto ms-[12px] text-xl font-semibold sm:text-[28px]">
-              Abdulrahman Aruna
-            </p>
+            CV
+          </a>
+          <Link
+            to="contact"
+            smooth={true}
+            duration={800}
+            offset={SCROLL_OFFSET}
+            className="cta cta--sm cta--primary header-cta"
+          >
+            Let&apos;s talk
           </Link>
+          <button
+            type="button"
+            className="nav-toggle"
+            aria-expanded={menuOpen}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span className="nav-toggle__bars" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </span>
+          </button>
         </div>
+      </div>
 
-        <div className="items-center lg:flex">
-          <ul className="menu menu-horizontal hidden text-[16px] font-medium md:shrink-0 lg:flex">
-            {menu}
-          </ul>
-          <div className="hidden items-center gap-2 sm:flex">
+      <div className={`nav-sheet ${menuOpen ? "is-open" : ""}`}>
+        <div className="shell nav-sheet__inner">
+          {navItems.map((item, index) => (
+            <Link
+              key={item.id}
+              to={item.url}
+              smooth={true}
+              duration={800}
+              spy={true}
+              offset={SCROLL_OFFSET}
+              activeClass="is-active"
+              className="nav-sheet__link"
+              onClick={() => setMenuOpen(false)}
+            >
+              {item.name}
+              <span className="nav-sheet__index">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+            </Link>
+          ))}
+          <div className="nav-sheet__actions">
             <a
               href={cvLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-ghost btn-sm xs:btn-md"
+              className="cta cta--outline"
+              onClick={() => setMenuOpen(false)}
             >
-              CV
+              Download CV
             </a>
             <Link
-              className="btn btn-sm btn-primary xs:btn-md sm:btn-lg text-white"
               to="contact"
               smooth={true}
-              duration={900}
+              duration={800}
+              offset={SCROLL_OFFSET}
+              className="cta cta--primary"
+              onClick={() => setMenuOpen(false)}
             >
-              Contact
+              Let&apos;s talk
             </Link>
           </div>
         </div>
       </div>
-    </div>
+
+      <span
+        className="scroll-progress"
+        style={{ transform: `scaleX(${progress})` }}
+        aria-hidden="true"
+      />
+    </header>
   );
 };
 

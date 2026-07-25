@@ -3,8 +3,10 @@ import {
   faLocationDot,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Address from "./Address";
 import SocialMedia from "../common/socialMedia/SocialMedia";
+import Reveal from "../common/reveal/Reveal";
 
 const addressData = [
   {
@@ -26,41 +28,55 @@ const addressData = [
 
 const Contact = () => {
   return (
-    <div className="relative z-10 -bottom-15 -mt-15 px-2">
-      <div
-        className="content rounded-2xl bg-white p-4 shadow-[0px_0px_90px_9px_rgba(0,_0,_0,_0.1)] md:p-10 lg:p-16"
-        id="contact"
-      >
-        <div className="max-w-2xl">
-          <p className="text-[32px] font-semibold text-ink md:text-[38px]">
-            Let&apos;s talk data
-          </p>
-          <p className="pt-4 text-sm font-normal text-soft-dark sm:text-lg">
-            Open to data engineering and analytics roles, plus freelance
-            pipeline and warehouse work. Reach out if you have something that
-            fits.
-          </p>
-        </div>
+    <section
+      className="relative z-10 bg-paper pt-20 md:pt-28"
+      id="contact"
+      aria-labelledby="contact-title"
+    >
+      <div className="shell">
+        <Reveal className="panel -mb-24 overflow-hidden p-6 shadow-[var(--shadow-lift-lg)] sm:p-10 md:-mb-32 lg:p-14">
+          <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
+            <div className="flex flex-col">
+              <p className="eyebrow">
+                <span className="eyebrow__rule" aria-hidden="true" />
+                Contact
+              </p>
+              <h2 id="contact-title" className="section-title mt-4 text-ink">
+                Let&apos;s talk data
+              </h2>
+              <p className="lede mt-4">
+                Open to data engineering and analytics roles, plus freelance
+                pipeline and warehouse work. Reach out if you have something
+                that fits.
+              </p>
 
-        <div className="my-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {addressData.map((item, index) => (
-            <Address item={item} key={index} />
-          ))}
-        </div>
+              <div className="mt-auto flex flex-wrap items-center gap-3 pt-8">
+                <a
+                  href="mailto:arunaabdulrahman01@gmail.com"
+                  className="cta cta--primary"
+                >
+                  Email me
+                  <FontAwesomeIcon
+                    icon={faEnvelope}
+                    className="cta__icon text-xs"
+                    aria-hidden="true"
+                  />
+                </a>
+                <div className="flex items-center gap-3">
+                  <SocialMedia />
+                </div>
+              </div>
+            </div>
 
-        <div className="flex flex-wrap items-center gap-4">
-          <a
-            href="mailto:arunaabdulrahman01@gmail.com"
-            className="btn btn-primary text-white"
-          >
-            Email me
-          </a>
-          <div className="flex items-center">
-            <SocialMedia />
+            <div className="grid content-start gap-3 lg:content-between">
+              {addressData.map((item) => (
+                <Address item={item} key={item.title} />
+              ))}
+            </div>
           </div>
-        </div>
+        </Reveal>
       </div>
-    </div>
+    </section>
   );
 };
 
