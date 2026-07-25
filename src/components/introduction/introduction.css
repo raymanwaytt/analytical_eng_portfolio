@@ -340,38 +340,43 @@
   .masthead__portrait {
     width: 100%;
     bottom: auto;
-    height: 62%;
+    height: 68%;
   }
 
+  /* The band is wider than the 3:4 source, so the crop window has to sit low
+     enough to hold the whole face rather than filling up with sky. */
   .masthead__portrait img {
-    object-position: 50% 16%;
+    object-position: 50% 46%;
     -webkit-mask-image: linear-gradient(
       180deg,
       #000 0%,
-      #000 46%,
-      rgba(0, 0, 0, 0.55) 74%,
+      #000 66%,
+      rgba(0, 0, 0, 0.35) 88%,
       transparent 100%
     );
     mask-image: linear-gradient(
       180deg,
       #000 0%,
-      #000 46%,
-      rgba(0, 0, 0, 0.55) 74%,
+      #000 66%,
+      rgba(0, 0, 0, 0.35) 88%,
       transparent 100%
     );
   }
 
+  /* Keep the face in the clear and do all the darkening below it, so the copy
+     still lands on near-solid ink. */
   .masthead__tint {
     background:
       linear-gradient(
         180deg,
-        rgba(7, 16, 29, 0.55) 0%,
-        rgba(7, 16, 29, 0.12) 14%,
-        rgba(7, 16, 29, 0.34) 30%,
-        rgba(7, 16, 29, 0.86) 46%,
-        #07101d 60%
+        rgba(7, 16, 29, 0.4) 0%,
+        rgba(7, 16, 29, 0.03) 16%,
+        rgba(7, 16, 29, 0.06) 34%,
+        rgba(7, 16, 29, 0.55) 47%,
+        rgba(7, 16, 29, 0.9) 57%,
+        #07101d 66%
       ),
-      radial-gradient(70% 40% at 80% 6%, rgba(20, 163, 148, 0.18), transparent 60%);
+      radial-gradient(70% 40% at 80% 6%, rgba(20, 163, 148, 0.1), transparent 60%);
   }
 
   /* The blueprint grid only reads as texture at desktop widths; on phones the

@@ -11,6 +11,30 @@
   border-bottom: 1px solid transparent;
 }
 
+/* Scrim so the brand and links stay legible while the header floats over the
+   bright top of the hero photo. It fades out once the glass bar takes over. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -3rem;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 16, 29, 0.72) 0%,
+    rgba(7, 16, 29, 0.38) 52%,
+    transparent 100%
+  );
+  transition: opacity 320ms ease;
+}
+
+.site-header.is-stuck::before {
+  opacity: 0;
+}
+
 .site-header.is-stuck {
   background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(18px) saturate(160%);
