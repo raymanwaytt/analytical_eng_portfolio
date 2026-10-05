@@ -14,8 +14,7 @@ const techStack = [
   { id: 6, name: "Power BI", icon: "powerbi.svg" },
   { id: 7, name: "Tableau", icon: "tableau.svg" },
   { id: 8, name: "Looker", icon: "looker.svg" },
-  { id: 9, name: "AWS", icon: "aws.svg" },
-  { id: 10, name: "Excel", icon: "excel.svg" },
+  { id: 9, name: "Excel", icon: "excel.svg" },
 ];
 
 const rows = [

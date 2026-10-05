@@ -1,5 +1,6 @@
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SyntheticChip from "./SyntheticChip";
 import ToolStack from "./ToolStack";
 
 const Projects = ({ data }) => {
@@ -16,15 +17,23 @@ const Projects = ({ data }) => {
           className="absolute inset-0 bg-gradient-to-t from-ink-950/45 via-transparent to-transparent"
           aria-hidden="true"
         />
-        <p className="absolute bottom-3 left-3 inline-flex items-center rounded-md border border-white/15 bg-ink-950/65 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-brand-200 backdrop-blur-sm">
-          {data?.category}
-        </p>
+        <div className="absolute bottom-3 left-3 right-3 flex flex-wrap gap-2">
+          <p className="inline-flex items-center rounded-md border border-white/15 bg-ink-950/65 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-brand-200 backdrop-blur-sm">
+            {data?.category}
+          </p>
+          {data?.synthetic && <SyntheticChip onMedia />}
+        </div>
       </div>
 
       <div className="flex flex-1 flex-col p-6">
         <h3 className="text-lg font-bold leading-snug tracking-[-0.015em] text-ink">
           {data?.title}
         </h3>
+        {data?.synthetic && (
+          <div className="mt-3">
+            <SyntheticChip />
+          </div>
+        )}
         <p className="mt-3 text-[14.5px] leading-relaxed text-slate-soft">
           {data?.description}
         </p>

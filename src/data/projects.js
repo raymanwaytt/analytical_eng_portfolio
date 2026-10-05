@@ -4,18 +4,22 @@ import card3 from "../assets/images/portfolio-images/fraud.jpeg";
 import card4 from "../assets/images/portfolio-images/credit.jpg";
 
 export const featuredProject = {
-  id: 2,
-  image: card2,
+  id: 6,
+  image: card4,
   category: "ANALYTICS ENGINEERING",
-  title: "Automated Bitcoin Analytics Pipeline",
+  title: "Credit Risk Analytics Pipeline",
+  synthetic: true,
+  lede: "Synthetic lending data lands in PostgreSQL, then dbt builds tested marts for risk, vintage, customer value, and channel. A dashboard is planned, not live.",
   problem:
-    "Market data needed to land daily in a reporting-ready shape without manual refreshes.",
-  built: "API ingestion into BigQuery, dbt transformations, and Airflow orchestration with Looker-ready outputs.",
-  outcome: "A scheduled ELT pipeline that delivers daily Bitcoin market analytics automatically.",
+    "Portfolio risk, vintage performance, customer value, and channel economics need conformed tables and data-quality checks. Raw lending extracts are not that model.",
+  built:
+    "Python generates the synthetic lending data. It loads into a PostgreSQL bronze layer, then dbt builds staging, core, analytics, and data-quality models — including PAR, vintage, CLV, and channel marts.",
+  outcome:
+    "Those marts and data-quality views are built in PostgreSQL. Power BI is planned; no dashboard is in the project yet.",
   description:
-    "Built an automated ELT pipeline using API ingestion, BigQuery, dbt transformations, and scheduled orchestration to deliver daily Bitcoin market analytics in a reporting-ready format.",
-  link: "https://github.com/raymanwaytt/bitcoin_daily_price",
-  tools: ["Python", "BigQuery", "dbt", "Airflow", "Looker"],
+    "Synthetic lending data in PostgreSQL bronze, transformed with dbt across staging, core, analytics, and data-quality layers into PAR, vintage, CLV, and channel marts.",
+  link: "https://github.com/raymanwaytt/credit-risk-analytics",
+  tools: ["Python", "PostgreSQL", "dbt"],
 };
 
 export const projectData = [
@@ -30,24 +34,25 @@ export const projectData = [
     tools: ["SQL Server", "ETL", "Data Modeling"],
   },
   {
+    id: 2,
+    image: card2,
+    category: "ANALYTICS ENGINEERING",
+    title: "Automated Bitcoin Analytics Pipeline",
+    description:
+      "Built an automated ELT pipeline using API ingestion, BigQuery, dbt transformations, and scheduled orchestration to deliver daily Bitcoin market analytics in a reporting-ready format.",
+    link: "https://github.com/raymanwaytt/bitcoin_daily_price",
+    tools: ["Python", "BigQuery", "dbt", "Airflow", "Looker"],
+  },
+  {
     id: 5,
     image: card3,
     category: "BUSINESS INTELLIGENCE",
     title: "Fraud Detection for PaySwift",
+    synthetic: true,
     description:
       "End-to-end fraud detection pipeline with synthetic data generation, SMOTE-balanced modeling, threshold tuning, and an executive Tableau dashboard. ROC-AUC: 0.88.",
     link: "https://github.com/raymanwaytt/PaySwift_Fraud_Detection",
     tools: ["Python", "SQL", "Tableau"],
-  },
-  {
-    id: 6,
-    image: card4,
-    category: "ANALYTICS ENGINEERING",
-    title: "Credit Risk Analytics Pipeline",
-    description:
-      "Built a layered analytics pipeline for credit risk data, focusing on data quality checks, transformations, and analytics-ready outputs for downstream risk analysis.",
-    link: "https://github.com/raymanwaytt/credit-risk-analytics",
-    tools: ["Python", "PostgreSQL", "dbt", "Power BI"],
   },
 ];
 
