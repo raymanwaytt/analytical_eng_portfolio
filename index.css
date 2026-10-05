@@ -357,6 +357,34 @@ body {
   color: var(--color-brand-200);
 }
 
+.synthetic-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 1.75rem;
+  padding-inline: 0.625rem;
+  border: 1px solid #e7c98a;
+  border-radius: 0.5rem;
+  background: #fff7e8;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a5a12;
+  white-space: nowrap;
+}
+
+.synthetic-chip--on-media {
+  height: auto;
+  padding: 0.25rem 0.5rem;
+  border-color: rgba(255, 236, 204, 0.45);
+  background: rgba(28, 18, 6, 0.72);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  color: #ffe7c2;
+  backdrop-filter: blur(6px);
+}
+
 /* ==========================================================================
    Scroll reveal
    ========================================================================== */

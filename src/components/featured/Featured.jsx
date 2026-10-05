@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { featuredProject } from "../../data/projects";
 import Reveal from "../common/reveal/Reveal";
 import SectionHeading from "../common/sectionHeading/SectionHeading";
+import SyntheticChip from "../portfolio/SyntheticChip";
 
 const Featured = () => {
   const project = featuredProject;
@@ -19,7 +20,7 @@ const Featured = () => {
         <SectionHeading
           eyebrow="Featured project"
           title={project.title}
-          lede="A flagship end-to-end pipeline that shows how I move data from source to decision-ready analytics."
+          lede={project.lede}
         />
 
         <Reveal delay={120} className="mt-12 md:mt-16">
@@ -35,12 +36,20 @@ const Featured = () => {
                 className="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent"
                 aria-hidden="true"
               />
-              <p className="absolute bottom-4 left-4 inline-flex items-center rounded-md border border-white/15 bg-ink-950/65 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-brand-200 backdrop-blur-sm">
-                {project.category}
-              </p>
+              <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2">
+                <p className="inline-flex items-center rounded-md border border-white/15 bg-ink-950/65 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-brand-200 backdrop-blur-sm">
+                  {project.category}
+                </p>
+                {project.synthetic && <SyntheticChip onMedia />}
+              </div>
             </div>
 
             <div className="p-6 sm:p-9 lg:p-11">
+              {project.synthetic && (
+                <div className="mb-5">
+                  <SyntheticChip />
+                </div>
+              )}
               <dl className="divide-y divide-slate-200/70 border-y border-slate-200/70">
                 {rows.map((row) => (
                   <div
